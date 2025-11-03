@@ -21,7 +21,6 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
             <Image
               src={postImage.imageUrl}
               alt={post.title}
-              data-ai-hint={postImage.imageHint}
               fill
               className="object-cover"
             />

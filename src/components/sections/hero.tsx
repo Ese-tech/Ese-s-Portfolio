@@ -47,7 +47,6 @@ export default function Hero() {
                 <Image
                   src={heroImage.imageUrl}
                   alt={heroImage.description}
-                  data-ai-hint={heroImage.imageHint}
                   fill
                   className="rounded-lg object-cover shadow-2xl"
                   priority

@@ -51,7 +51,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 <Image
                 src={postImage.imageUrl}
                 alt={post.title}
-                data-ai-hint={postImage.imageHint}
                 fill
                 className="rounded-lg object-cover"
                 priority

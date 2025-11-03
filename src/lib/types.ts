@@ -1,12 +1,14 @@
 import type { LucideIcon } from "lucide-react";
+import type { IconType } from "react-icons";
 
 export interface Skill {
   name: string;
-  icon: LucideIcon;
+  icon: LucideIcon | IconType;
 }
 
 export interface SkillCategory {
   title: string;
+  icon: LucideIcon | IconType;
   skills: Skill[];
 }
 

@@ -1,23 +1,25 @@
 import type { SkillCategory, Project, Experience, BlogPost } from "@/lib/types";
-import { Code, Server, Database, GitBranch, ReactLogo } from "lucide-react";
+import { Code, Server, Database, GitBranch, PanelTop } from "lucide-react";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaVercel } from 'react-icons/fa';
 
 export const skillsData: SkillCategory[] = [
   {
     title: "Frontend",
+    icon: PanelTop,
     skills: [
-      { name: "HTML5", icon: Code },
-      { name: "CSS3", icon: Code },
-      { name: "JavaScript (ES6+)", icon: Code },
-      { name: "React", icon: ReactLogo },
-      { name: "Next.js", icon: ReactLogo },
+      { name: "HTML5", icon: FaHtml5 },
+      { name: "CSS3", icon: FaCss3Alt },
+      { name: "JavaScript (ES6+)", icon: FaJs },
+      { name: "React", icon: FaReact },
+      { name: "Next.js", icon: FaReact },
       { name: "Tailwind CSS", icon: Code },
     ],
   },
   {
     title: "Backend",
+    icon: Server,
     skills: [
-      { name: "Node.js", icon: Server },
+      { name: "Node.js", icon: FaNodeJs },
       { name: "Express.js", icon: Server },
       { name: "MongoDB", icon: Database },
       { name: "REST APIs", icon: Server },
@@ -25,10 +27,11 @@ export const skillsData: SkillCategory[] = [
   },
   {
     title: "Tools & Deployment",
+    icon: GitBranch,
     skills: [
-      { name: "Git", icon: GitBranch },
-      { name: "GitHub", icon: GitBranch },
-      { name: "Vercel", icon: GitBranch },
+      { name: "Git", icon: FaGitAlt },
+      { name: "GitHub", icon: FaGithub },
+      { name: "Vercel", icon: FaVercel },
     ],
   },
 ];

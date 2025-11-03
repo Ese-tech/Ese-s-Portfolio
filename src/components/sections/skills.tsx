@@ -9,8 +9,8 @@ import {
   FaNodeJs,
   FaGitAlt,
   FaGithub,
-  FaVercel,
 } from 'react-icons/fa';
+import { SiVercel } from 'react-icons/si';
 import { Code, Database, GitBranch, Server } from 'lucide-react';
 
 // A mapping from skill name to a React Icon component
@@ -26,7 +26,7 @@ const iconMap: { [key: string]: React.ElementType } = {
   'REST APIs': Server,
   Git: FaGitAlt,
   GitHub: FaGithub,
-  Vercel: FaVercel,
+  Vercel: SiVercel,
   'Tailwind CSS': Code,
 };
 

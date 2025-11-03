@@ -1,6 +1,7 @@
 import type { SkillCategory, Project, Experience, BlogPost } from "@/lib/types";
 import { Code, Server, Database, GitBranch, PanelTop } from "lucide-react";
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaVercel } from 'react-icons/fa';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaGithub } from 'react-icons/fa';
+import { SiVercel } from 'react-icons/si';
 
 export const skillsData: SkillCategory[] = [
   {
@@ -31,7 +32,7 @@ export const skillsData: SkillCategory[] = [
     skills: [
       { name: "Git", icon: FaGitAlt },
       { name: "GitHub", icon: FaGithub },
-      { name: "Vercel", icon: FaVercel },
+      { name: "Vercel", icon: SiVercel },
     ],
   },
 ];

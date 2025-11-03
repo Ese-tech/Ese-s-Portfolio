@@ -5,11 +5,11 @@ runConfig:
   # Increase this value if you'd like to automatically spin up
   # more instances in response to increased traffic.
   maxInstances: 1
-# Use bun to install dependencies and run the build
+# Use npm to install dependencies and run the build
 build:
   # The command to install dependencies
-  installCommand: bun install
+  installCommand: npm install
   # The command to build your app
-  buildCommand: bun run build
+  buildCommand: npm run build
 # The command to start your app
-startCommand: bun run start
+startCommand: npm run start

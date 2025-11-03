@@ -1,3 +1,40 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "A portrait of Ese, a full-stack developer.",
+      "imageUrl": "https://images.unsplash.com/photo-1599314530867-e4977662048b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3b21hbiUyMGRldmVsb3BlcnxlbnwwfHx8fDE3NjIwNDQxMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman developer"
+    },
+    {
+      "id": "project1",
+      "description": "Screenshot of an e-commerce platform.",
+      "imageUrl": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZWNvbW1lcmNlJTIwd2Vic2l0ZXxlbnwwfHx8fDE3NjIxNTI3MDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ecommerce website"
+    },
+    {
+      "id": "project2",
+      "description": "Screenshot of a recipe finder application.",
+      "imageUrl": "https://images.unsplash.com/photo-1601972599720-36938d4ecd31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmb29kJTIwYXBwfGVufDB8fHx8MTc2MjE1OTcxMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "food app"
+    },
+    {
+      "id": "project3",
+      "description": "Screenshot of a personal blog.",
+      "imageUrl": "https://images.unsplash.com/photo-1627660163713-6cd934c5e177?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtaW5pbWFsaXN0JTIwYmxvZ3xlbnwwfHx8fDE3NjIwODU0OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "minimalist blog"
+    },
+    {
+      "id": "blog1",
+      "description": "Abstract image representing React hooks.",
+      "imageUrl": "https://images.unsplash.com/photo-1760548425298-22aa4b60fc16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGNvZGV8ZW58MHx8fHwxNzYyMTAzMjUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract code"
+    },
+    {
+      "id": "blog2",
+      "description": "Abstract image representing Tailwind CSS.",
+      "imageUrl": "https://images.unsplash.com/photo-1558655146-d09347e92766?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkZXNpZ24lMjBzeXN0ZW18ZW58MHx8fHwxNzYyMTU5NzEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "design system"
+    }
+  ]
 }

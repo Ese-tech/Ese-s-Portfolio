@@ -1,51 +1,49 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+  const { login } = useAuth();
 
   const handleLogin = async () => {
     try {
       const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-      // TODO: Store token and user data
+      login(res.data.token);
       router.push('/');
-    } catch (error) {
-      Alert.alert('Login Failed', 'Invalid credentials');
+    } catch (err) {
+      console.error(err);
     }
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.loginBox}>
-        <Text style={styles.title}>Login</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          placeholderTextColor="#888"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          placeholderTextColor="#888"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => router.push('/register')}>
-          <Text style={styles.link}>Don't have an account? Register</Text>
-        </TouchableOpacity>
-      </View>
+      <Text style={styles.title}>Login</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        placeholderTextColor="#888"
+        value={email}
+        onChangeText={setEmail}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        placeholderTextColor="#888"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+      />
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => router.push('/register')}>
+        <Text style={styles.link}>Don't have an account? Register</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -57,32 +55,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#0A0F28',
   },
-  loginBox: {
-    width: 400,
-    padding: 40,
-    backgroundColor: '#1A213E',
-    borderRadius: 10,
-  },
   title: {
-    color: '#fff',
     fontSize: 32,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 30,
+    color: '#FFD700',
+    marginBottom: 20,
   },
   input: {
-    backgroundColor: '#0A0F28',
+    width: '80%',
+    backgroundColor: '#1A213E',
     color: '#fff',
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    borderRadius: 5,
+    padding: 15,
     marginBottom: 20,
+    borderRadius: 5,
   },
   button: {
     backgroundColor: '#FFD700',
-    paddingVertical: 15,
+    padding: 15,
     borderRadius: 5,
-    alignItems: 'center',
   },
   buttonText: {
     color: '#0A0F28',
@@ -91,7 +80,6 @@ const styles = StyleSheet.create({
   },
   link: {
     color: '#fff',
-    textAlign: 'center',
     marginTop: 20,
   },
 });

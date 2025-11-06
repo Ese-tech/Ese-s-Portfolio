@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useMovieContext } from '../../context/MovieContext';
+import { useAuth } from '../context/AuthContext';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Movie } from '../types';
 
 const MovieDetails = () => {
   const { movie } = useLocalSearchParams();
-  const { user } = useMovieContext();
+  const { user } = useAuth();
   const router = useRouter();
-  const [movieDetails, setMovieDetails] = useState(null);
+  const [movieDetails, setMovieDetails] = useState<Movie | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const movieId = Array.isArray(movie) ? movie[0] : movie;
 
   useEffect(() => {
     if (!user) {
       router.push('/login');
-    } else if (movie) {
-      fetchMovieDetails();
+    } else if (movieId) {
+      fetchMovieDetails(movieId);
+    } else {
+      setLoading(false);
     }
-  }, [user, movie]);
+  }, [user, movieId]);
 
-  const fetchMovieDetails = async () => {
+  const fetchMovieDetails = async (id: string) => {
     try {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=YOUR_API_KEY`);
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=YOUR_API_KEY`);
       const data = await response.json();
       setMovieDetails(data);
       setLoading(false);

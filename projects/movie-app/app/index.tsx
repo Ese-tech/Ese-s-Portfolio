@@ -1,56 +1,18 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image, Modal } from 'react-native';
+import React from 'react';
+import { View, StyleSheet, FlatList, Modal, TouchableOpacity, Text } from 'react-native';
 import { useMovieContext } from '../context/MovieContext';
-import { useRouter } from 'expo-router';
-import { LinearGradient } from 'expo-linear-gradient';
+import MovieCard from '../components/MovieCard';
 import YouTube from 'react-youtube';
+import { Movie, TVSeries } from '../types';
 
 const Home = () => {
-  const { movies, user } = useMovieContext();
-  const router = useRouter();
-  const [trailerUrl, setTrailerUrl] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const handleMoviePress = (movieId) => {
-    if (user) {
-      router.push(`/movie/${movieId}`);
-    } else {
-      fetchTrailer(movieId);
-    }
-  };
-
-  const fetchTrailer = async (movieId) => {
-    try {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=YOUR_API_KEY`);
-      const data = await response.json();
-      const trailer = data.results.find(video => video.type === 'Trailer');
-      if (trailer) {
-        setTrailerUrl(trailer.key);
-        setModalVisible(true);
-      } else {
-        alert('Trailer not found.');
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const renderMovie = ({ item }) => (
-    <TouchableOpacity onPress={() => handleMoviePress(item.id)} style={styles.movieContainer}>
-      <Image source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }} style={styles.poster} />
-      <Text style={styles.title}>{item.title}</Text>
-    </TouchableOpacity>
-  );
+  const { movies, tvSeries, trailerUrl, setTrailerUrl } = useMovieContext();
 
   return (
     <View style={styles.container}>
-       <LinearGradient
-        colors={['#0A0F28', '#1A213E', '#2C3A5B']}
-        style={styles.gradient}
-      />
-      <FlatList
-        data={movies}
-        renderItem={renderMovie}
+      <FlatList<Movie | TVSeries>
+        data={movies.length > 0 ? movies : tvSeries}
+        renderItem={({ item }) => <MovieCard item={item} type={movies.length > 0 ? 'movie' : 'tv'} />}
         keyExtractor={(item) => item.id.toString()}
         numColumns={4}
         contentContainerStyle={styles.movieList}
@@ -58,12 +20,12 @@ const Home = () => {
       <Modal
         animationType="slide"
         transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
+        visible={trailerUrl !== null}
+        onRequestClose={() => setTrailerUrl(null)}
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.closeButton}>
+            <TouchableOpacity onPress={() => setTrailerUrl(null)} style={styles.closeButton}>
               <Text style={styles.closeButtonText}>X</Text>
             </TouchableOpacity>
             {trailerUrl && <YouTube videoId={trailerUrl} />}
@@ -78,31 +40,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  gradient: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-  },
   movieList: {
     padding: 20,
-  },
-  movieContainer: {
-    flex: 1,
-    margin: 10,
-    alignItems: 'center',
-  },
-  poster: {
-    width: 200,
-    height: 300,
-    borderRadius: 10,
-  },
-  title: {
-    color: '#fff',
-    marginTop: 10,
-    fontSize: 16,
-    textAlign: 'center',
+    justifyContent: 'space-around',
   },
   modalContainer: {
     flex: 1,

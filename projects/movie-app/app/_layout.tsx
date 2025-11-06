@@ -1,13 +1,12 @@
 import React from 'react';
-import { MovieProvider, useMovieContext } from '../context/MovieContext';
+import { MovieProvider } from '../context/MovieContext';
+import { AuthProvider } from '../context/AuthContext';
 import { Slot } from 'expo-router';
 import Navigation from '../components/navigation';
 import { View, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const AppLayout = () => {
-  const { user } = useMovieContext();
-
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -22,9 +21,11 @@ const AppLayout = () => {
 
 const RootLayout = () => {
   return (
-    <MovieProvider>
-      <AppLayout />
-    </MovieProvider>
+    <AuthProvider>
+      <MovieProvider>
+        <AppLayout />
+      </MovieProvider>
+    </AuthProvider>
   );
 };
 

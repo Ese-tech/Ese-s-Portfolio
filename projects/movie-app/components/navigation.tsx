@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { useMovieContext } from '../context/MovieContext';
 import { useRouter } from 'expo-router';
+import { useAuth } from '../context/AuthContext';
 
 const Navigation = () => {
   const [moviesMenuVisible, setMoviesMenuVisible] = useState(false);
@@ -9,7 +10,8 @@ const Navigation = () => {
   const [genresMenuVisible, setGenresMenuVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
-  const navRef = useRef(null);
+  const navRef = useRef<View>(null);
+  const { user, logout } = useAuth();
 
   const {
     fetchPopularMovies,
@@ -32,8 +34,8 @@ const Navigation = () => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (navRef.current && !navRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setMoviesMenuVisible(false);
         setTvSeriesMenuVisible(false);
         setGenresMenuVisible(false);
@@ -127,11 +129,7 @@ const Navigation = () => {
                 <TouchableOpacity 
                   key={index} 
                   style={styles.genreItem}
-                  onPress={() => {
-                    if (fetchMoviesByGenre) {
-                      fetchMoviesByGenre(item.id);
-                    }
-                  }}
+                  onPress={() => fetchMoviesByGenre(item.id)}
                 >
                   <Text style={styles.dropdownItemText}>{item.name}</Text>
                 </TouchableOpacity>
@@ -149,9 +147,15 @@ const Navigation = () => {
           onChangeText={setSearchQuery}
           onSubmitEditing={handleSearch}
         />
-        <TouchableOpacity style={styles.loginButton} onPress={() => router.push('/login')}>
-          <Text style={styles.loginButtonText}>Login</Text>
-        </TouchableOpacity>
+        {user ? (
+          <TouchableOpacity style={styles.loginButton} onPress={() => logout()}>
+            <Text style={styles.loginButtonText}>Logout</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.loginButton} onPress={() => router.push('/login')}>
+            <Text style={styles.loginButtonText}>Login</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

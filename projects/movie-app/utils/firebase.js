@@ -3,12 +3,13 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyAzHbI8RWHKK1NTenw8NUIXrlnAS2bpIpw",
+  authDomain: "cineverse-91310.firebaseapp.com",
+  projectId: "cineverse-91310",
+  storageBucket: "cineverse-91310.firebasestorage.app",
+  messagingSenderId: "1086241389626",
+  appId: "1:1086241389626:web:ae4f224d75633f49a38903",
+  measurementId: "G-YTTZNM5KBQ"
 };
 
 

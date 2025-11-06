@@ -17,7 +17,7 @@ router.post('/register', async (req, res) => {
     user = new User({
       username,
       email,
-      password,
+      password
     });
 
     const salt = await bcrypt.genSalt(10);
@@ -27,14 +27,14 @@ router.post('/register', async (req, res) => {
 
     const payload = {
       user: {
-        id: user.id,
-      },
+        id: user.id
+      }
     };
 
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: 3600 }, // 1 hour
+      { expiresIn: 360000 },
       (err, token) => {
         if (err) throw err;
         res.json({ token });
@@ -63,14 +63,14 @@ router.post('/login', async (req, res) => {
 
     const payload = {
       user: {
-        id: user.id,
-      },
+        id: user.id
+      }
     };
 
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: 3600 },
+      { expiresIn: 360000 },
       (err, token) => {
         if (err) throw err;
         res.json({ token });

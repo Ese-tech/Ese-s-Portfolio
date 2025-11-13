@@ -70,6 +70,38 @@ body {
     @apply bg-background text-foreground;
   }
   section {
-    @apply w-full py-12 md:py-24 lg:py-32;
+    @apply w-full py-8 px-4 md:py-16 lg:py-24 xl:py-32;
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .container {
+      @apply px-4;
+    }
+    
+    /* Prevent horizontal overflow */
+    html, body {
+      overflow-x: hidden;
+    }
+    
+    /* Improve touch targets */
+    button, a {
+      @apply min-h-[44px];
+    }
+  }
+  
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Additional mobile touch improvements */
+@media (max-width: 768px) {
+  .touch-improvement {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
 }

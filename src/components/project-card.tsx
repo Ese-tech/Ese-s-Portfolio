@@ -21,27 +21,30 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           className="object-cover"
         />
       </div>
-      <CardHeader>
-        <CardTitle>{project.title}</CardTitle>
-        <div className="flex flex-wrap gap-2 pt-2">
-          {project.technologies.map(tech => (
-            <Badge key={tech} variant="outline">{tech}</Badge>
+      <CardHeader className="pb-3">
+        <CardTitle className="text-lg leading-tight sm:text-xl">{project.title}</CardTitle>
+        <div className="flex flex-wrap gap-1.5 pt-2">
+          {project.technologies.slice(0, 4).map(tech => (
+            <Badge key={tech} variant="outline" className="text-xs px-2 py-0.5">{tech}</Badge>
           ))}
+          {project.technologies.length > 4 && (
+            <Badge variant="outline" className="text-xs px-2 py-0.5">+{project.technologies.length - 4} more</Badge>
+          )}
         </div>
       </CardHeader>
-      <CardContent className="flex-grow">
-        <p className="text-muted-foreground">{project.description}</p>
+      <CardContent className="flex-grow pb-3">
+        <p className="text-sm text-muted-foreground leading-relaxed sm:text-base">{project.description}</p>
       </CardContent>
-      <CardFooter className="flex justify-end gap-2">
-        <Button variant="outline" asChild>
+      <CardFooter className="flex flex-col gap-2 sm:flex-row sm:justify-end">
+        <Button variant="outline" size="sm" className="flex-1 sm:flex-none" asChild>
           <Link href={project.githubLink} target="_blank" rel="noopener noreferrer">
-            <Github className="mr-2 h-4 w-4" /> Code
+            <Github className="mr-2 h-3 w-3 sm:h-4 sm:w-4" /> Code
           </Link>
         </Button>
         {project.liveLink && (
-          <Button asChild>
+          <Button size="sm" className="flex-1 sm:flex-none" asChild>
             <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
+              <ExternalLink className="mr-2 h-3 w-3 sm:h-4 sm:w-4" /> Live Demo
             </Link>
           </Button>
         )}

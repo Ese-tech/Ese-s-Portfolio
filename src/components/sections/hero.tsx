@@ -3,12 +3,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { ArrowDown } from 'lucide-react';
 
 export default function Hero() {
-  const heroImage = PlaceHolderImages.find(p => p.id === 'hero');
-
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const targetId = e.currentTarget.href.split('#')[1];
@@ -26,9 +23,9 @@ export default function Hero() {
             <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               Hi, I'm Ese
             </h1>
-            <p className="mt-2 text-lg text-primary">A Passionate Full-Stack Web Developer</p>
+            <p className="mt-2 text-lg text-primary">Motivierte Full-Stack-Quereinsteigerin</p>
             <p className="mt-6 text-lg leading-8 text-foreground/80">
-              I bring ideas to life with code. After completing my intensive training at the Digital Career Institute (DCI), I'm equipped with a strong foundation in modern web technologies, from crafting beautiful user interfaces with React to building robust server-side logic with Node.js. My background in marketing has given me a unique perspective on user experience and creative problem-solving.
+              Aktuell absolviere ich eine 19-monatige Full-Stack-Ausbildung beim Digital Career Institute (DCI) mit Fokus auf Frontend- und Backend-Entwicklung. Als flexible Quereinsteigerin bringe ich Zuverlässigkeit, Kommunikationsstärke und Problemlösungsorientierung mit. Ich möchte mein Wissen im Rahmen eines IT-Praktikums anwenden und vertiefen.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-4 md:justify-start">
               <Button asChild size="lg">
@@ -42,17 +39,15 @@ export default function Hero() {
             </div>
           </div>
           <div className="order-1 flex justify-center md:order-2">
-            {heroImage && (
-              <div className="relative h-[400px] w-[300px] md:h-[500px] md:w-[400px] lg:h-[600px] lg:w-[500px]">
-                <Image
-                  src={heroImage.imageUrl}
-                  alt={heroImage.description}
-                  fill
-                  className="rounded-lg object-cover shadow-2xl"
-                  priority
-                />
-              </div>
-            )}
+            <div className="relative h-[400px] w-[300px] md:h-[500px] md:w-[400px] lg:h-[600px] lg:w-[500px]">
+              <Image
+                src="/image/me.png"
+                alt="Ese Osagie - Full-Stack Developer"
+                fill
+                className="rounded-lg object-cover shadow-2xl"
+                priority
+              />
+            </div>
           </div>
         </div>
       </div>

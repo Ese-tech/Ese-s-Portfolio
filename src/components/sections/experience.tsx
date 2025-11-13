@@ -1,4 +1,4 @@
-import { experienceData } from '@/lib/data';
+import { experiences } from '@/lib/data';
 import { Briefcase, GraduationCap } from 'lucide-react';
 
 export default function Experience() {
@@ -14,22 +14,29 @@ export default function Experience() {
           {/* Timeline Line */}
           <div className="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-border"></div>
 
-          {experienceData.map((item, index) => (
+          {experiences.map((item, index) => (
             <div key={index} className="group relative mb-8 flex items-center justify-between md:justify-normal md:odd:flex-row-reverse">
               {/* Timeline Item Content */}
               <div className="flex w-full items-center md:w-1/2 md:pr-8 md:odd:flex-row-reverse md:odd:pl-8 md:odd:text-right">
                 <div className="w-full rounded-lg border bg-card p-4 shadow-sm transition-all group-hover:shadow-md">
-                  <p className="text-sm font-semibold text-primary">{item.date}</p>
+                  <p className="text-sm font-semibold text-primary">{item.period}</p>
                   <h3 className="text-lg font-bold">{item.title}</h3>
                   <p className="text-md text-muted-foreground">{item.company}</p>
                   <p className="mt-2 text-sm">{item.description}</p>
+                  {item.technologies.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      {item.technologies.map((tech, techIndex) => (
+                        <span key={techIndex} className="text-xs bg-secondary px-2 py-1 rounded">{tech}</span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
               
               {/* Timeline Dot and Icon */}
               <div className="absolute left-1/2 z-10 -translate-x-1/2">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary bg-background transition-all group-hover:scale-110">
-                  {item.title.toLowerCase().includes('training') ? (
+                  {item.title.toLowerCase().includes('student') || item.title.toLowerCase().includes('ausbildung') ? (
                     <GraduationCap className="h-5 w-5 text-primary" />
                   ) : (
                     <Briefcase className="h-5 w-5 text-primary" />

@@ -12,7 +12,7 @@ import { Label } from '@/components/ui/label';
 import { Loader2, Send } from 'lucide-react';
 
 const initialState = {
-  message: null,
+  message: '',
   errors: null,
 };
 

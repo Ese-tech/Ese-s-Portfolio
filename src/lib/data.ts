@@ -1,88 +1,93 @@
 import type { SkillCategory, Project, Experience, BlogPost } from "@/lib/types";
 import { Code, Server, Database, GitBranch, PanelTop } from "lucide-react";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaGithub } from 'react-icons/fa';
-import { SiVercel } from 'react-icons/si';
+import { SiVercel, SiMongodb, SiExpress, SiTypescript, SiTailwindcss, SiStripe } from 'react-icons/si';
 
-export const skillsData: SkillCategory[] = [
+export const skills = [
+  { name: 'JavaScript', level: 90 },
+  { name: 'TypeScript', level: 85 },
+  { name: 'React', level: 88 },
+  { name: 'Next.js', level: 85 },
+  { name: 'Node.js', level: 82 },
+  { name: 'Bun', level: 80 },
+  { name: 'MongoDB', level: 80 },
+  { name: 'Tailwind CSS', level: 90 },
+  { name: 'NativeWind', level: 78 },
+  { name: 'React Native', level: 75 },
+  { name: 'Express.js', level: 80 },
+  { name: 'REST API', level: 82 },
+  { name: 'CRUD Operations', level: 85 },
+  { name: 'Git', level: 85 },
+];
+
+export const projects: Project[] = [
   {
-    title: "Frontend",
-    icon: PanelTop,
-    skills: [
-      { name: "HTML5", icon: FaHtml5 },
-      { name: "CSS3", icon: FaCss3Alt },
-      { name: "JavaScript (ES6+)", icon: FaJs },
-      { name: "React", icon: FaReact },
-      { name: "Next.js", icon: FaReact },
-      { name: "Tailwind CSS", icon: Code },
-    ],
+    id: '1',
+    title: 'CineVerse - Movie Discovery App',
+    description: 'A modern movie discovery app built with React Native and Expo, featuring smooth animations, beautiful gradients, and integration with TMDB API for real-time movie data.',
+    image: '/image/movieapp.png',
+    technologies: ['React Native', 'Expo', 'TypeScript', 'Expo Router', 'TMDB API', 'React Native Reanimated'],
+    tags: ['Mobile App', 'React Native', 'API Integration'],
+    githubLink: 'https://github.com/ese-tech/movie-app',
+    liveLink: 'https://movie-app-nu-tan.vercel.app/',
+    featured: true,
   },
   {
-    title: "Backend",
-    icon: Server,
-    skills: [
-      { name: "Node.js", icon: FaNodeJs },
-      { name: "Express.js", icon: Server },
-      { name: "MongoDB", icon: Database },
-      { name: "REST APIs", icon: Server },
-    ],
+    id: '2',
+    title: 'LumaPress - Personal Blog Platform',
+    description: 'A full-stack blog platform with Next.js 16, featuring modern design, TypeScript integration, and MongoDB backend with JWT authentication.',
+    image: '/image/lumablog.png',
+    technologies: ['Next.js 16', 'TypeScript', 'Tailwind CSS', 'MongoDB', 'Express.js', 'JWT', 'Cloudinary'],
+    tags: ['Full-Stack', 'Blog Platform', 'Authentication'],
+    githubLink: 'https://github.com/ese-tech/personal-blog',
+    liveLink: 'https://personal-blog-six-mu.vercel.app/',
+    featured: true,
   },
   {
-    title: "Tools & Deployment",
-    icon: GitBranch,
-    skills: [
-      { name: "Git", icon: FaGitAlt },
-      { name: "GitHub", icon: FaGithub },
-      { name: "Vercel", icon: SiVercel },
-    ],
+    id: '3',
+    title: 'ShopHub - E-Commerce Platform',
+    description: 'A comprehensive e-commerce platform built with React 19, Vite, and modern state management using Zustand. Features Stripe payment integration and Cloudinary image management.',
+    image: '/image/shophube-comess.png',
+    technologies: ['React 19', 'Vite', 'TypeScript', 'Tailwind CSS', 'Zustand', 'Stripe', 'MongoDB', 'Cloudinary'],
+    tags: ['E-Commerce', 'Payment Integration', 'State Management'],
+    githubLink: 'https://github.com/ese-tech/e-commerce-platform',
+    liveLink: 'https://e-commerce-platform-vert.vercel.app/',
+    featured: true,
   },
 ];
 
-export const projectsData: Project[] = [
+export const experiences = [
   {
-    id: "proj-1",
-    title: "E-Commerce Platform",
-    image: "project1",
-    description:
-      "A full-featured e-commerce website built with the MERN stack. Includes product listings, shopping cart, user authentication, and a checkout process. Designed to be scalable and responsive.",
-    githubLink: "https://github.com/",
-    liveLink: "#",
-    tags: ["React", "Node.js", "MongoDB", "Express"],
+    id: '1',
+    title: 'Full-Stack Web Development Student',
+    company: 'Digital Career Institute (DCI)',
+    period: 'Juni 2024 – January 2026',
+    description: 'Intensive 19-month Full-Stack development program focusing on frontend and backend technologies. Hands-on training with real projects, teamwork, and individual mentoring for successful IT career transition.',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'React', 'Node.js', 'MongoDB', 'TypeScript', 'Next.js', 'Tailwind CSS'],
   },
   {
-    id: "proj-2",
-    title: "Recipe Finder App",
-    image: "project2",
-    description:
-      "A web application that helps users discover new recipes based on ingredients they have. Integrated with a third-party recipe API and features a clean, user-friendly interface.",
-    githubLink: "https://github.com/",
-    liveLink: "#",
-    tags: ["React", "API", "JavaScript", "CSS"],
+    id: '2',
+    title: 'Freelance Household Assistant',
+    company: 'Private Households - Bielefeld',
+    period: '2020 – 2024',
+    description: 'Independent organization, customer communication, and high reliability in service delivery. Developed strong problem-solving and time management skills.',
+    technologies: [],
   },
   {
-    id: "proj-3",
-    title: "Personal Blog",
-    image: "project3",
-    description:
-      "A minimalist blog built with Next.js and styled with Tailwind CSS. Features static site generation for fast performance and easy content management with Markdown files.",
-    githubLink: "https://github.com/",
-    tags: ["Next.js", "Tailwind CSS", "TypeScript"],
-  },
-];
-
-export const experienceData: Experience[] = [
-  {
-    date: "2023 - 2024",
-    title: "Full-Stack Web Development Training",
-    company: "Digital Career Institute (DCI), Germany",
-    description:
-      "Completed an intensive one-year training program covering the entire web development stack, from frontend technologies like React to backend with Node.js. Developed several projects, both individually and in teams.",
+    id: '3',
+    title: 'Reception Staff',
+    company: 'Hotel Krug – Bonn',
+    period: '2012 – 2019',
+    description: 'Worked with booking systems, customer service, problem-solving, and team coordination. Gained valuable experience in digital workflows and customer relations.',
+    technologies: [],
   },
   {
-    date: "2020 - 2023",
-    title: "Junior Marketing Assistant",
-    company: "Creative Solutions GmbH",
-    description:
-      "Assisted in developing and implementing marketing strategies. Managed social media channels and created content, which sparked my interest in web design and development.",
+    id: '4',
+    title: 'Sales Associate with Extended Responsibilities',
+    company: 'Replay FashionBox GmbH – Bonn',
+    period: '2013 – 2016',
+    description: 'Advanced from part-time to full-time position, responsible for daily operations, inventory management, and collaboration with management team.',
+    technologies: [],
   },
 ];
 

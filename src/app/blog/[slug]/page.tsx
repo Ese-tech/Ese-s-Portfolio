@@ -5,11 +5,12 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import type { Metadata } from 'next';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = blogPostsData.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const post = blogPostsData.find((p) => p.slug === slug);
 
   if (!post) {
     return {
@@ -29,8 +30,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = blogPostsData.find((p) => p.slug === params.slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = blogPostsData.find((p) => p.slug === slug);
 
   if (!post) {
     notFound();

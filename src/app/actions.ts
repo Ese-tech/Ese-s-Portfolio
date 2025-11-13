@@ -1,9 +1,6 @@
-// @ts-nocheck
 'use server';
 
 import { z } from 'zod';
-import { optimizeProjectShowcase } from '@/ai/flows/optimize-project-showcase';
-import type { Project } from '@/lib/types';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -40,36 +37,4 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   }
 }
 
-const DUMMY_IMAGE_DATA_URI = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
-export async function getOptimizedProjects(employerDescription: string, projects: Project[]): Promise<Project[] | { error: string }> {
-  if (!employerDescription) {
-    return { error: 'Please describe the potential employer.' };
-  }
-
-  try {
-    const optimizedProjects = await Promise.all(
-      projects.map(async (project) => {
-        const result = await optimizeProjectShowcase({
-          title: project.title,
-          image: DUMMY_IMAGE_DATA_URI, // Using a dummy image as per plan
-          description: project.description,
-          githubLink: project.githubLink,
-          potentialEmployerDescription: employerDescription,
-        });
-
-        return {
-          ...project,
-          title: result.optimizedTitle,
-          description: result.optimizedDescription,
-          // Optional: You could store and display the reasoning
-          // reasoning: result.reasoning, 
-        };
-      })
-    );
-    return optimizedProjects;
-  } catch (error) {
-    console.error('Error optimizing projects:', error);
-    return { error: 'Failed to optimize projects. Please try again later.' };
-  }
-}

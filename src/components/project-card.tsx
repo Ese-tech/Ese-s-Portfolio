@@ -4,7 +4,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Project } from '@/lib/types';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Github, ExternalLink } from 'lucide-react';
 
 interface ProjectCardProps {
@@ -12,25 +11,21 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const projectImage = PlaceHolderImages.find(p => p.id === project.image);
-
   return (
     <Card className="flex h-full flex-col overflow-hidden transition-all hover:shadow-lg">
-      {projectImage && (
-        <div className="relative aspect-video w-full">
-            <Image
-              src={projectImage.imageUrl}
-              alt={project.title}
-              fill
-              className="object-cover"
-            />
-        </div>
-      )}
+      <div className="relative aspect-video w-full">
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          className="object-cover"
+        />
+      </div>
       <CardHeader>
         <CardTitle>{project.title}</CardTitle>
         <div className="flex flex-wrap gap-2 pt-2">
-          {project.tags.map(tag => (
-            <Badge key={tag} variant="outline">{tag}</Badge>
+          {project.technologies.map(tech => (
+            <Badge key={tech} variant="outline">{tech}</Badge>
           ))}
         </div>
       </CardHeader>

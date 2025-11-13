@@ -20,6 +20,8 @@ export interface Project {
   githubLink: string;
   liveLink?: string;
   tags: string[];
+  technologies: string[];
+  featured: boolean;
 }
 
 export interface Experience {
